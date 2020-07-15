@@ -8,6 +8,11 @@ SimpleScopes::SimpleScopes(scope *scopes, int size){
     memory = (void**)malloc(8);
 }
 
+SimpleScopes::~SimpleScopes(){
+    scopes = NULL;
+    delete memory;
+}
+
 void SimpleScopes::init(int scope){
     scopes[scope].initfn(memory);
     currentScope = scope;
@@ -18,7 +23,10 @@ void SimpleScopes::init(){
 }
 
 void SimpleScopes::loop(){
-    scopes[currentScope].loopfn(*memory);
+    int res = scopes[currentScope].loopfn(*memory);
+    if(res != -1){
+        switchScope(res);
+    }
 }
 
 void SimpleScopes::switchScope(int newScope){

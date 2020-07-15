@@ -3,7 +3,7 @@
 
 typedef struct {
     void (*initfn)(void**);
-    void (*loopfn)(void*);
+    int (*loopfn)(void*);
     void (*cleanfn)(void**);
 } scope;
 
@@ -15,6 +15,7 @@ class SimpleScopes {
     int currentScope;
     public:
     SimpleScopes(scope*, int);
+    ~SimpleScopes();
     void init();
     void init(int);
     void switchScope(int);
