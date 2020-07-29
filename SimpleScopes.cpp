@@ -5,7 +5,7 @@ SimpleScopes::SimpleScopes(scope *scopes, int size){
     this->scopes = scopes;
     this->numScopes = size;
     currentScope = -1;
-    memory = (void**)malloc(8);
+    memory = new void*;
 }
 
 SimpleScopes::~SimpleScopes(){

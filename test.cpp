@@ -15,7 +15,7 @@ typedef struct {
 
 void init_a(void ** data){
     std::cout << "Init scope A\n";
-    testStruct * test = (testStruct*)malloc(sizeof(testStruct*));
+    testStruct * test = new testStruct;
     test->scope_int = global_int;
     *data = test;
 }
@@ -34,13 +34,13 @@ int loop_a(void * data){
 void clean_a(void ** data){
     testStruct * test = static_cast<testStruct*>(*data);
     global_int = test->scope_int;
-    free(test);
+    delete test;
     return;
 }
 
 void init_b(void ** data){
     std::cout << "Init scope B\n";
-    testStruct * test = (testStruct*)malloc(sizeof(testStruct*));
+    testStruct * test = new testStruct;
     test->scope_int = global_int * 4;
     *data = test;
 }
@@ -55,13 +55,13 @@ int loop_b(void * data){
 void clean_b(void ** data){
     testStruct * test = static_cast<testStruct*>(*data);
     global_int = test->scope_int;
-    free(test);
+    delete test;
     return;
 }
 
 void init_c(void ** data){
     std::cout << "Init scope C\n";
-    testStruct * test = (testStruct*)malloc(sizeof(testStruct*));
+    testStruct * test = new testStruct;
     test->scope_int = global_int;
     *data = test;
 }
@@ -76,7 +76,7 @@ int loop_c(void * data){
 void clean_c(void ** data){
     testStruct * test = static_cast<testStruct*>(*data);
     global_int = test->scope_int;
-    free(test);
+    delete test;
     return;
 }
 
