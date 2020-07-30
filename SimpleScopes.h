@@ -13,13 +13,16 @@ class SimpleScopes {
     scope *scopes;
     int numScopes;
     int currentScope;
+    int prevScope;
+    void init(int);
     public:
     SimpleScopes(scope*, int);
     ~SimpleScopes();
-    void init();
-    void init(int);
     void switchScope(int);
     void loop();
+    int getPrevScope(){return prevScope;}
+    int getCurrentScope(){return currentScope;}
+    void * getCurrentScopeMemory(){return *memory;}
 };
 
 #endif

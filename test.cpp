@@ -1,3 +1,4 @@
+#ifdef TEST
 #include "SimpleScopes.h"
 #include <iostream>
 
@@ -106,3 +107,5 @@ int main() {
     scopes->init();
     loop();
 }
+
+#endif

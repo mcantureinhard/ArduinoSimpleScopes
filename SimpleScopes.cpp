@@ -5,7 +5,9 @@ SimpleScopes::SimpleScopes(scope *scopes, int size){
     this->scopes = scopes;
     this->numScopes = size;
     currentScope = -1;
+    prevScope = -1;
     memory = new void*;
+    init(0);
 }
 
 SimpleScopes::~SimpleScopes(){
@@ -18,10 +20,6 @@ void SimpleScopes::init(int scope){
     currentScope = scope;
 }
 
-void SimpleScopes::init(){
-    init(0);
-}
-
 void SimpleScopes::loop(){
     int res = scopes[currentScope].loopfn(*memory);
     if(res != -1){
@@ -31,5 +29,6 @@ void SimpleScopes::loop(){
 
 void SimpleScopes::switchScope(int newScope){
     scopes[currentScope].cleanfn(memory);
+    prevScope = currentScope;
     init(newScope);
 }
